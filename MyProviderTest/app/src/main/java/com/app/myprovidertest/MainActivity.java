@@ -30,7 +30,7 @@ public class MainActivity extends Activity {
                 values.put("name", "A Clash of Kings");
                 values.put("author", "George Martin");
                 values.put("pages", 2040);
-                values.put("price", 52.85);
+                values.put("price", 55.85);
                 Uri newUri = getContentResolver().insert(uri, values);
                 newId = newUri.getPathSegments().get(1);
             }
