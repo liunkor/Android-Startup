@@ -1,6 +1,9 @@
 package com.app.jsontest;
 
 import android.app.Activity;
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -37,7 +40,15 @@ public class MainActivity extends Activity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if(v.getId() == R.id.get_json) {
-            sendRequestWithHttpURLConnection();
+            ConnectivityManager connectivityManager = (ConnectivityManager ) getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+            if( networkInfo != null && networkInfo.isConnected()) {
+                sendRequestWithHttpURLConnection();
+                Log.d("NetworkdConnectStatus", "connected");
+            }
+            else {
+                Log.d("NetworkdConnectStatus", "unconnected");
+            }
         }
     }
 
